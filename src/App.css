@@ -26,10 +26,12 @@ main {
 }
 
 .poster {
-  border: 4px solid gray;
+  border: 6px solid gray;
   display: inline-block;
   width: 200px;
   margin-right: 10px;
+  margin-bottom: 5px;
+  float: left;
 }
 
 .bounty-form {

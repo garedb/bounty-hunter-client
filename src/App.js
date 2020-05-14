@@ -1,16 +1,43 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
 
+// Custom Components
+import Poster from "./Poster"
+
+// API URL that we want to call
+const API_URL = 'https://bounty-api-gared.herokuapp.com/v1/bounties/'
+
 function App() {
   // State variables
+  let [bounties, setBounties] = useState([])
+  let [currentBounty, setCurrentBounty] = useState({})
 
   // Effect hook
   useEffect(() => {
-    console.log('Hello!')
+    callApi()
   }, [])
 
   // Function to call the API and retrieve the bounties
-  // TODO
+  const callApi = () => {
+    fetch(API_URL)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      setBounties(data)
+    })
+    .catch(err => {
+      console.log('Error', err)
+    })
+  }
+
+  let posters = bounties.map((b, i) => {
+    return (
+      <Poster 
+        key={i}
+        bounty={b}
+      />
+    )
+  })
 
   return (
     <div className="App">
@@ -19,7 +46,9 @@ function App() {
         <p>Reduce crime in your neighborhood!</p>
       </header>
       <main>
+        {posters}
         TODO: BOUNTIES AND BOUNTY FORM
+        }
       </main>
     </div>
   );

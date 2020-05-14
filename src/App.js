@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 
 // Custom Components
-import Poster from "./Poster"
+import BountyForm from './BountyForm'
+import Poster from './Poster'
+import ShowBounty from './ShowBounty'
 
 // API URL that we want to call
 const API_URL = 'https://bounty-api-gared.herokuapp.com/v1/bounties/'
@@ -35,6 +37,9 @@ function App() {
       <Poster 
         key={i}
         bounty={b}
+        refresh={callApi}
+        currentId={currentBounty._id}
+        changeCurrent={setCurrentBounty}
       />
     )
   })
@@ -47,8 +52,8 @@ function App() {
       </header>
       <main>
         {posters}
-        TODO: BOUNTIES AND BOUNTY FORM
-        }
+        <ShowBounty currentBounty={currentBounty}/>
+        <BountyForm refresh={callApi}/>
       </main>
     </div>
   );
